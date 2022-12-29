@@ -88,7 +88,7 @@ public class ReplyDao {
 				pstmt2.executeUpdate();
 			} catch (Exception e) {
 				conn.rollback();
-				e.printStackTrace();
+				e.printStackTrace();	
 			} finally {
 				conn.setAutoCommit(true);
 			}

@@ -8,7 +8,7 @@
 
 <div class="container">
 	<div class="text-center jumbotron bg-light">
-		<h1>게시글조회</h1>
+		<h1>자유게시판</h1>
 	</div>
 	<form id="viewForm" enctype="multipart/form-data">
 		<table class="table">
@@ -73,34 +73,19 @@
 	
 	<div class="replyForm">
 		<table class="table">
-			
 			<tr>
-				<th colspan="2">
-					<ul class="d-flex justify-content-between">
-						<li>댓글을 작성해주세요</li>
-						<li class="form-inline">작성자 : <input type="text" class="reply_writer form-control ml-2" value="${auth.id}" readonly="readonly"></li>
-					</ul>
-				</th>
-			</tr>
-			
-			<tr>
-				<td class="col-1 text-center">내용</td>
-				<td>
-					<textarea rows="5" class="form-control reply_content"></textarea>
+				<td class="col-md-1 text-center align-middle"><b>${auth.id}</b></td>
+				<td class="col-md-9">
+					<textarea rows="3" class="form-control reply_content" placeholder="댓글을 작성해주세요."></textarea>
 				</td>
+				<td colspan="2"><button class="btn btn-primary btn-lg col-7 reply_write">댓글등록</button></td>
 			</tr>
-			
-			<tr class="text-right">
-				<td colspan="2"><button class="btn btn-primary reply_write">댓글등록</button></td>
-			</tr>
-			
 		</table>
 	</div>
 	<div class="replyList">
 		<div class="card">
 			<div class="card-header bg-warning text-white">댓글목록</div>
 			<div class="card-body">
-			
 			</div>
 		</div>
 	</div>

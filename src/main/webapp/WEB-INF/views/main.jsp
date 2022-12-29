@@ -16,5 +16,5 @@
         	<div class="col-md-3"><img class="img-fluid" src="${contextPath }/resources/image/avatarThum.jpg" alt=""></div>
         </div>
     
-</body>
-</html>
+
+<%@ include file="layout/footer.jsp" %>

@@ -17,7 +17,8 @@ import domain.AuthVO;
 
 @WebFilter(urlPatterns = {
 		"/board/writeForm",
-		"/board/detail"
+		"/board/detail",
+		"/member/reviewDetail"
 })
 public class BoardFilter extends HttpFilter implements Filter {
 

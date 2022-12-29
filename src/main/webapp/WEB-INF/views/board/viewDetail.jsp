@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<div class="container rounded-lg my-5 viewOpacity" style="width: 1200px; margin-bottom: 20px; padding: 10px 30px; background-color: white; box-shadow: 5px 5px 5px 5px;">
         <div class="row my-5">
             <h1>아바타 - 물의 길</h1>
         </div>
@@ -33,6 +32,5 @@
             <button class="btn btn-secondary">< Prev</button>
             <button class="btn btn-secondary ml-3">Next > </button>
         </div>
-    </div>
     
 <%@ include file="../layout/footer.jsp" %>

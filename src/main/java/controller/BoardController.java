@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.FileUpload;
+import dao.BoardDAO;
+import domain.BoardVO;
+import service.BoardService;
+
 @WebServlet("/board/*")
 public class BoardController extends HttpServlet {
        
+	private BoardService service;
+	private FileUpload multiReq;
+	
+	@Override
+	public void init() throws ServletException {
+		BoardDAO dao = new BoardDAO();
+		service = new BoardService(dao);
+		multiReq = new FileUpload("board/");
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
@@ -28,17 +45,45 @@ public class BoardController extends HttpServlet {
 		RequestDispatcher rd = null;
 		String nextPage = null;
 		
-		if(pathInfo.equals("/list")) {
+		if(pathInfo == null || pathInfo.equals("/") || pathInfo.equals("/list")) {
+			List<BoardVO> boardList = service.boardList();
+			request.setAttribute("list", boardList);
 			nextPage = "list";
 		}
-		
+		else if(pathInfo.equals("/detail")) {
+				String paramBno = request.getParameter("bno");
+				int bno = Integer.parseInt(paramBno);
+				BoardVO findBoard = service.findBoard(bno);
+				request.setAttribute("board", findBoard);
+				nextPage = "detail";
+		}
 		else if(pathInfo.equals("/viewDetail")) {
 			nextPage = "viewDetail";
-		} else if(pathInfo.equals("/reviewDetail")) {
+		} 
+		else if(pathInfo.equals("/reviewDetail")) {
 			nextPage = "review";
 		}
-		
-		else {
+		else if(pathInfo.equals("/writeForm")) {
+			nextPage = "writeForm";
+		}
+		else if(pathInfo.equals("/write")) {
+			Map<String, String> req = multiReq.getMultipartRequest(request);
+			String imageFileName = req.get("imageFileName");
+			
+			BoardVO vo = BoardVO.builder()
+					.title(req.get("title"))
+					.content(req.get("content"))
+					.writer(req.get("writer"))
+					.imageFileName(req.get("imageFileName")).build();
+			int boardNo = service.addBoard(vo);
+			
+			if(imageFileName != null && imageFileName.length() > 0) {
+				multiReq.uploadImage(boardNo, imageFileName);
+			}
+			
+			response.sendRedirect(contextPath + "/board");
+			return;
+		} else {
 			System.out.println("잘못된 접근");
 			return;
 		}

@@ -46,6 +46,8 @@ public class BoardDAO {
 		return list;
 		
 	}
+	
+
 
 	// 글 상세
 	public BoardVO selectOne(int bno) {
@@ -79,10 +81,10 @@ public class BoardDAO {
 		int boardNo = 0;
 		String query = "SELECT MAX(bno)+1 AS boardNo FROM board_tbl";
 		try (
-			Connection conn = dataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery();
-		){
+				Connection conn = dataSource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
+				ResultSet rs = pstmt.executeQuery();
+				){
 			if(rs.next()) {
 				boardNo = rs.getInt("boardNo");
 			}
@@ -91,20 +93,19 @@ public class BoardDAO {
 		}
 		return boardNo;
 	}
-
+	
 	// 글쓰기
 	public int insertBoard(BoardVO vo) {
-		String query = "insert into board_tbl(bno, title, content, writer, imageFileName) values(?, ?, ?, ?, ?)";
+		String query = "insert into board_tbl(bno, title, content, writer, imageFileName) values(seq_bno.nextval, ?, ?, ?, ?)";
 		int boardNo = getNewBno(); 
 		try (
 			Connection conn = dataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(query);
 		){
-			pstmt.setInt(1, boardNo);
-			pstmt.setString(2, vo.getTitle());
-			pstmt.setString(3, vo.getContent());
-			pstmt.setString(4, vo.getWriter());
-			pstmt.setString(5, vo.getImageFileName());
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setString(3, vo.getWriter());
+			pstmt.setString(4, vo.getImageFileName());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
