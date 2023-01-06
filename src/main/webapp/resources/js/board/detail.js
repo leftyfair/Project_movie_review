@@ -64,7 +64,9 @@ $(function() {
 	let bno = $('input[name="bno"]').val();
 
 	// 댓글 목록
-	replyService.list(bno);	
+	replyService.list(bno);
+	apiMovie.list();
+	
 
 	// 댓글 쓰기	
 	$('.reply_write').on('click', function() {

@@ -8,7 +8,7 @@
 
 <div class="container">
 	<div class="text-center jumbotron bg-light">
-		<h1>자유게시판</h1>
+		<h1>글상세</h1>
 	</div>
 	<form id="viewForm" enctype="multipart/form-data">
 		<table class="table">

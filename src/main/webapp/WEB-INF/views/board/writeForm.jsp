@@ -3,8 +3,9 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container">
+	
 	<div class="text-center jumbotron bg-light">
-		<h1>게시글조회</h1>
+		<h1>글쓰기</h1>
 	</div>
 	
 	<form action="${contextPath}/board/write" method="post" enctype="multipart/form-data">
