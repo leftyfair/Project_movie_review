@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 <script src="${contextPath}/resources/js/reply/ReplyService.js"></script>
+<script src="${contextPath}/resources/js/board/movieApi.js"></script>
 <script src="${contextPath}/resources/js/board/detail.js"></script>
 
 <div class="feedback" style="display:none;">이벤트 트리거 테스트</div>
