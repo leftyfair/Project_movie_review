@@ -8,4 +8,5 @@ $(function() {
 				.attr('action', `${contextPath}/board/detail`)
 				.submit();
 	});
+		
 });

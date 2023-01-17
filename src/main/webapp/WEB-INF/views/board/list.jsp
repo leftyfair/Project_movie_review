@@ -6,8 +6,11 @@
 		<h1>자유게시판</h1>
 	</div>
 	
+	${api}
+	${apiImage }
 	<form id="listForm">
 		<table class="table">
+		
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
